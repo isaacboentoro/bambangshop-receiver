@@ -95,4 +95,16 @@ If we had used Mutex instead, every operation (both reads and writes) would be s
 Rust does not permit this, because it values memory safety (without garbage collection). Static mutable variables can be accessed from multiple threads simultaneously, potentially causing data races.
 
 #### Reflection Subscriber-2
- 
+
+>Have you explored things outside of the steps in the tutorial, for example: src/lib.rs? If not, explain why you did not do so. If yes, explain things that you have learned from those other parts of code.
+
+Yes. lib.rs contains global constants, application configuration, error handling, and dependencies. It centarlizzes all these, and is important for the Observer pattern implementation (as it provides the HTTP client needed to communicate with the publisher and standardizes how the application handles configuration and errors.)
+
+
+>Since you have completed the tutorial by now and have tried to test your notification system by spawning multiple instances of Receiver, explain how Observer pattern eases you to plug in more subscribers. How about spawning more than one instance of Main app, will it still be easy enough to add to the system?
+
+Observer pattern simplifies adding new subscribers because the publishser (main app) doesn't need to know specific details about individual subscribers. It only needs to mantain a list of subscriber URLS and notify them when events occur. Adding new subscribers doesn't require modifying the publisher's codebase, just registering the new subscribers via API calls.
+
+>Have you tried to make your own Tests, or enhance documentation on your Postman collection? If you have tried those features, tell us whether it is useful for your work (it can be your tutorial work or your Group Project).
+
+Yes, I have added the tests to the Postman collection. It has been useful for ensuring endpoints work as expected, and for mass testing.
